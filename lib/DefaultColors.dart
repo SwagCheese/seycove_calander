@@ -1,0 +1,8 @@
+import 'package:flutter/material.dart';
+
+Color primaryColor1 = Colors.blue,
+      primaryColor2 = Colors.lightBlue,
+      accentColor1 = Colors.blueAccent,
+      accentColor2 = Colors.lightBlueAccent,
+      secondaryColor1 = Colors.deepPurpleAccent,
+      secondaryColor2 = Colors.deepPurple;
