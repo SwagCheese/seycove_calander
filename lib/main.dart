@@ -1,7 +1,5 @@
 import 'package:calendar_appbar/calendar_appbar.dart';
 import 'package:flutter/material.dart';
-import 'package:calendar_appbar/calendar_appbar.dart';
-import 'DefaultColors.dart';
 import  'Course.dart';
 
 void main() {
@@ -63,16 +61,15 @@ class _MainView extends State<MainView> {
     return Scaffold(
       appBar: CalendarAppBar
       (
+        firstDate: DateTime.now().subtract(const Duration(days: 365)),
         selectedDate: DateTime.now(),
-        lastDate: DateTime.now().add(const Duration(days: 100)),
+        lastDate: DateTime.now().add(const Duration(days: 365)),
         onDateChanged: changeCourses,
         backButton: false,
       ),
-      body: Container(
-        child: Center(
-          child: ListView(
-            children: dailyCourses,
-          ),
+      body: Center(
+        child: ListView(
+          children: dailyCourses,
         ),
       ),
     );

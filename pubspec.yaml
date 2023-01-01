@@ -33,7 +33,6 @@ dependencies:
     sdk: flutter
   global_configs: any
   calendar_appbar: any
-  timeago: any
 
 
   # The following adds the Cupertino Icons font to your application.
