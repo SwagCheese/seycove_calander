@@ -1,6 +1,8 @@
+import 'package:calendar_appbar/calendar_appbar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_event_calendar/flutter_event_calendar.dart';
+import 'package:calendar_appbar/calendar_appbar.dart';
 import 'DefaultColors.dart';
+import  'Course.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,13 +28,13 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Seycove Calander App),')
+      home: const MainView(title: 'Seycove Calander App),'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class MainView extends StatefulWidget {
+  const MainView({super.key, required this.title});
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -46,10 +48,10 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MainView> createState() => _MainView();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MainView extends State<MainView> {
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -58,23 +60,21 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-
-    return EventCalendar(
-      calendarType: CalendarType.GREGORIAN,
-      calendarLanguage: 'en',
-      headerOptions: HeaderOptions(weekDayStringType: WeekDayStringTypes.SHORT, calendarIconColor: primaryColor1),
-      calendarOptions: CalendarOptions(viewType: ViewType.MONTHLY, toggleViewType: true),
-      events: [
-        Event(
-          child: const Text('Laravel Event'),
-          dateTime: CalendarDateTime(
-            year: 1401,
-            month: 5,
-            day: 12,
-            calendarType: CalendarType.GREGORIAN,
+    return Scaffold(
+      appBar: CalendarAppBar
+      (
+        selectedDate: DateTime.now(),
+        lastDate: DateTime.now().add(const Duration(days: 100)),
+        onDateChanged: changeCourses,
+        backButton: false,
+      ),
+      body: Container(
+        child: Center(
+          child: ListView(
+            children: dailyCourses,
           ),
         ),
-      ],
+      ),
     );
   }
 }
