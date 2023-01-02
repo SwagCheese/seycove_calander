@@ -1,6 +1,7 @@
 import 'package:calendar_appbar/calendar_appbar.dart';
 import 'package:flutter/material.dart';
-import  'Course.dart';
+import 'course.dart';
+import 'settings.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,16 +16,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Seycove Calander App',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
+      ),
+      darkTheme: ThemeData(
+        primaryColor: Colors.white,
+
       ),
       home: const MainView(title: 'Seycove Calander App),'),
     );
@@ -65,6 +61,7 @@ class _MainView extends State<MainView> {
         selectedDate: DateTime.now(),
         lastDate: DateTime.now().add(const Duration(days: 365)),
         onDateChanged: changeCourses,
+
         backButton: false,
       ),
       body: Center(

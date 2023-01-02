@@ -62,7 +62,7 @@ enum Block {
     return blockNum != 0 ? before + blockNum.toString() + after: "";
   }
 
-  String getTimeString(BuildContext context, String separator) { // TODO: make function to get start and end times as date object then use that to make a string
+  String getTimeString(BuildContext context, String separator) {
     return "${getTime()[0].format(context)}$separator${getTime()[1].format(context)}";
   }
 

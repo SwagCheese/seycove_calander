@@ -74,20 +74,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  gato:
-    dependency: transitive
-    description:
-      name: gato
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.5+1"
-  global_configs:
-    dependency: "direct main"
-    description:
-      name: global_configs
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.1.2"
   intl:
     dependency: transitive
     description:
@@ -184,6 +170,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.2"
+  yaml:
+    dependency: "direct main"
+    description:
+      name: yaml
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.1.1"
 sdks:
   dart: ">=2.18.6 <3.0.0"
   flutter: ">=1.17.0"
