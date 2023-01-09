@@ -1,32 +1,92 @@
 import 'package:flutter/material.dart';
 
 List<Widget> dailyCourses = [
-  const Course("English", Block.first),
-  const Course("French", Block.second),
-  const Course("Physics", Block.third),
-  const Course("Lunch", Block.lunch),
-  const Course("Woodwork", Block.fourth),
+  const Course("English", 205, Block.first),
+  const Course("French", 205, Block.second),
+  const Course("Physics", 308, Block.third),
+  const Course("Lunch", 0, Block.lunch),
+  const Course("Woodwork", 101, Block.fourth),
 ];
 
 class Course extends StatelessWidget {
   final String name;
   final Block block;
-  const Course(this.name, this.block, {super.key});
+  final int roomNumber;
+  const Course(this.name, this.roomNumber, this.block, {super.key});
 
   @override
   Widget build(BuildContext context) {
+    if (block.getBlockNum() != 0) {
+      return Padding(
+        padding: const EdgeInsets.fromLTRB(10, 0, 10, 20),
+        child: Container(
+          width: 325,
+          height: 90,
+          decoration: BoxDecoration(
+            color: Colors.blue[800],
+            borderRadius: const BorderRadius.all(Radius.circular(25)),
+          ),
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Stack(
+                children: [
+                  CircleAvatar(
+                    radius: 40,
+                    backgroundColor: Colors.white,
+                    child: Center(child: Text(block.getBlockNumString(),
+                        style: const TextStyle(fontSize: 50))),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 100),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(name, style: const TextStyle(
+                                fontSize: 25,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold))
+                        ),
+                        Text("Room $roomNumber",
+                            style: const TextStyle(fontSize: 15, color: Colors
+                                .white))
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(10, 0, 10, 20),
-      child: Container(
-        color: Colors.white,
-        height: 100,
-        alignment: Alignment.centerLeft,
-        child: Text(
-          textAlign: TextAlign.left,
-          "$name${block.getBlockNumString("(", ")")} ${block.getTimeString(context, " - ")}", // TODO nicer formatting
-          style: const TextStyle(fontSize: 30),
-        ),
-      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: Container(
+              height: 4,
+              color: Colors.blue[800],
+            ),
+          ),
+          Text(
+            name,
+            style: TextStyle(fontSize: 50, color: Colors.blue[400]),
+          ),
+          Expanded(
+            child: Container(
+              height: 4,
+              color: Colors.blue[800],
+            ),
+          ),
+        ],
+      )
     );
   }
 }
@@ -57,9 +117,9 @@ enum Block {
     }
   }
 
-  String getBlockNumString(String before, String after) {
+  String getBlockNumString() {
     int blockNum = getBlockNum();
-    return blockNum != 0 ? before + blockNum.toString() + after: "";
+    return blockNum != 0 ? blockNum.toString() : "";
   }
 
   String getTimeString(BuildContext context, String separator) {
