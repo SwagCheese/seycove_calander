@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "377501938588",
+    "project_id": "seycove-calendar",
+    "storage_bucket": "seycove-calendar.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:377501938588:android:da2c76563a86b0ec144e59",
+        "android_client_info": {
+          "package_name": "com.example.march_1_firebase_messaging"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "377501938588-5ulp6ig7c9o3uj9u5m0nk2cick9sjc1u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5U7Q5xNmAQ9DaqfNmbNL04tdwGDuEups"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "377501938588-5ulp6ig7c9o3uj9u5m0nk2cick9sjc1u.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "377501938588-1j64cv0mvop2j1nirsr3kmo1063p2sim.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.march1FirebaseMessaging"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:377501938588:android:25cff261e3a63d06144e59",
+        "android_client_info": {
+          "package_name": "com.seydev.seycove_calander_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "377501938588-5ulp6ig7c9o3uj9u5m0nk2cick9sjc1u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5U7Q5xNmAQ9DaqfNmbNL04tdwGDuEups"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "377501938588-5ulp6ig7c9o3uj9u5m0nk2cick9sjc1u.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "377501938588-1j64cv0mvop2j1nirsr3kmo1063p2sim.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.march1FirebaseMessaging"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

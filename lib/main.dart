@@ -1,8 +1,13 @@
 import 'package:calendar_appbar/calendar_appbar.dart';
 import 'package:flutter/material.dart';
 import 'course.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 void main() {
+   Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -38,14 +43,12 @@ class _MainView extends State<MainView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CalendarAppBar
-      (
-        accent: const Color(0xFF0039D9), // this is the default accent but I put it here for easy access
+      appBar: CalendarAppBar(
+        accent: const Color(0xFF0039D9),
         firstDate: DateTime.now().subtract(const Duration(days: 365)),
         selectedDate: DateTime.now(),
-        lastDate: DateTime.now().add(const Duration(days: 365)),
+        lastDate: DateTime.now().add(const Duration(days: 50)),
         onDateChanged: changeCourses,
-
         backButton: false,
       ),
       body: Center(
@@ -56,3 +59,4 @@ class _MainView extends State<MainView> {
     );
   }
 }
+
