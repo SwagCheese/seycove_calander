@@ -31,7 +31,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  calendar_appbar: any
+  calendar_agenda: any
   yaml: any
 
 
