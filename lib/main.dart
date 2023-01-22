@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.white,
 
       ),
-      home: const MainView(title: 'Seycove Calander App),'),
+      home: const MainView(title: 'Seycove Calander App,'),
     );
   }
 }
@@ -48,6 +48,7 @@ class _MainView extends State<MainView> {
         firstDate: DateTime.now().subtract(const Duration(days: 100)),
         lastDate: DateTime.now().add(const Duration(days: 100)),
         onDateSelected: changeCourses,
+        selectedDayPosition: SelectedDayPosition.left,
         appbar: true,
       ),
       body: Center(
