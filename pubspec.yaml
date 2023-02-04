@@ -32,6 +32,7 @@ dependencies:
   flutter:
     sdk: flutter
   calendar_agenda: any
+  timeline_tile: any
   yaml: any
 
 

@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 
 List<Widget> dailyCourses = [
-  const Course("English", 205, Block.first),
-  const Course("French", 205, Block.second),
-  const Course("Physics", 308, Block.third),
-  const Course("Lunch", 0, Block.lunch),
-  const Course("Woodwork", 101, Block.fourth),
+  Course("English", 205, Block.first),
+  Course("French", 205, Block.second),
+  Course("Physics", 308, Block.third),
+  Course("Lunch", 0, Block.lunch),
+  Course("Woodwork", 101, Block.fourth),
 ];
 
 class Course extends StatelessWidget {
   final String name;
   final Block block;
   final int roomNumber;
-  const Course(this.name, this.roomNumber, this.block, {super.key});
+  final List<TimeOfDay> time;
+  Course(this.name, this.roomNumber, this.block, [List<TimeOfDay>? time]) : time = block.getTime(); // not sure how to fix this warning
 
   @override
   Widget build(BuildContext context) {
@@ -89,6 +90,10 @@ class Course extends StatelessWidget {
       )
     );
   }
+
+  String getTimeString(BuildContext context, String separator) {
+    return "${time[0].format(context)}$separator${time[1].format(context)}";
+  }
 }
 
 void changeCourses(DateTime day) {
@@ -120,10 +125,6 @@ enum Block {
   String getBlockNumString() {
     int blockNum = getBlockNum();
     return blockNum != 0 ? blockNum.toString() : "";
-  }
-
-  String getTimeString(BuildContext context, String separator) {
-    return "${getTime()[0].format(context)}$separator${getTime()[1].format(context)}";
   }
 
   List<TimeOfDay> getTime() {
