@@ -12,9 +12,27 @@ class Course extends StatelessWidget {
   final String name;
   final Block block;
   final int roomNumber;
-  final List<TimeOfDay> time;
+  final List<TimeOfDay?> time;
   Course(this.name, this.roomNumber, this.block, [List<TimeOfDay>? time]) : time = block.getTime(); // not sure how to fix this warning
 
+  factory Course.fromJson(Map<String, dynamic> json) {
+    return Course(
+      json['name'],
+      json['roomNumber'],
+      Block.values[json['block']],
+      List<TimeOfDay>.from(json['time'].map((timeJson) => TimeOfDay.fromDateTime(DateTime.parse(timeJson)))),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'block': block.index,
+      'roomNumber': roomNumber,
+      'time': time
+    };
+  }
+  
   @override
   Widget build(BuildContext context) {
     if (block.getBlockNum() != 0) {
@@ -92,7 +110,7 @@ class Course extends StatelessWidget {
   }
 
   String getTimeString(BuildContext context, String separator) {
-    return "${time[0].format(context)}$separator${time[1].format(context)}";
+    return "${time[0]?.format(context)}$separator${time[1]?.format(context)}";
   }
 }
 
@@ -105,7 +123,8 @@ enum Block {
   second,
   third,
   lunch,
-  fourth;
+  fourth,
+  xBlock;
 
   int getBlockNum() {
     switch (this) {
@@ -127,7 +146,7 @@ enum Block {
     return blockNum != 0 ? blockNum.toString() : "";
   }
 
-  List<TimeOfDay> getTime() {
+  List<TimeOfDay?> getTime() {
     switch (this) {
       case Block.first:
         return [const TimeOfDay(hour: 9, minute: 12), const TimeOfDay(hour:10, minute: 22)];
@@ -139,6 +158,8 @@ enum Block {
         return [const TimeOfDay(hour: 12, minute: 40), const TimeOfDay(hour:1, minute: 50)];
       case Block.fourth:
         return [const TimeOfDay(hour: 1, minute: 50), const TimeOfDay(hour:3, minute: 00)];
+      case Block.xBlock:
+        return [null, null]; // we don't know the time of x block classes
     }
   }
 }
