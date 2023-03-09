@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:seycove_calander_app/files.dart';
 
-List<Widget> dailyCourses = [
-  Course("English", 205, Block.first),
-  Course("French", 205, Block.second),
-  Course("Physics", 308, Block.third),
-  Course("Lunch", 0, Block.lunch),
-  Course("Woodwork", 101, Block.fourth),
-];
+List<Widget> dailyCourses = loadConfig();
 
 class Course extends StatelessWidget {
   final String name;

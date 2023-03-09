@@ -1,23 +1,25 @@
 import 'dart:io';
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
+
 import 'course.dart';
 
 // Define the filename for the configuration file
 const configFileName = "course_config.json";
 
 // Load the course configuration from a file
-Future<List<Course>> loadConfig() async {
+List<Course> loadConfig() {
   try {
     // Open the configuration file
     final file = File(configFileName);
-    if (!await file.exists()) {
+    if (!file.existsSync()) {
       // If the file doesn't exist, return an empty list
       return [];
     }
 
     // Read the contents of the file as a string
-    final jsonString = await file.readAsString();
+    final jsonString = file.readAsStringSync();
 
     // Parse the JSON string into a List of Course objects
     final jsonData = jsonDecode(jsonString);
@@ -43,6 +45,8 @@ Future<void> saveConfig(List<Course> courses) async {
     await file.close();
   } catch (e) {
     // If an error occurs while writing the file, print the error message
-    print("Error saving course configuration: $e");
+    if (kDebugMode) {
+      print("Error saving course configuration: $e");
+    }
   }
 }

@@ -1,32 +1,54 @@
 import 'package:calendar_agenda/calendar_agenda.dart';
 import 'package:flutter/material.dart';
 import 'course.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
+import 'login_page.dart';
 
-void main() {
-   Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const SeydarApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+class SeydarApp extends StatelessWidget {
+  const SeydarApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Seycove Calander App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      darkTheme: ThemeData(
-        primaryColor: Colors.white,
+    print(dailyCourses);
 
-      ),
-      home: const MainView(title: 'Seycove Calander App,'),
-    );
+    if (dailyCourses.isEmpty) {
+      // launch page
+      return MaterialApp(
+        title: 'Launch Page',
+        theme: ThemeData(
+          colorScheme: const ColorScheme(
+            primary: Color(0xffBB86FC),
+            secondary: Color(0xff03DAC6),
+            surface: Color(0xff181818),
+            background: Color(0xff121212),
+            error: Color(0xffCF6679),
+            onPrimary: Color(0xff000000),
+            onSecondary: Color(0xff000000),
+            onSurface: Color(0xffffffff),
+            onBackground: Color(0xffffffff),
+            onError: Color(0xff000000),
+            brightness: Brightness.dark,
+          ),
+          primarySwatch: Colors.blue,
+        ),
+        home: const LoginPage(title: 'Launch UI'),
+      );
+    } else {
+      // main page
+      return MaterialApp(
+        title: 'Seycove Calendar App',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        darkTheme: ThemeData(
+          primaryColor: Colors.white,
+        ),
+        home: const MainView(title: 'Seycove Calendar App,'),
+      );
+    }
   }
 }
 
@@ -52,11 +74,8 @@ class _MainView extends State<MainView> {
         appbar: true,
       ),
       body: Center(
-        child: ListView(
-          children: dailyCourses,
-        ),
+        child: ListView(children: dailyCourses),
       ),
     );
   }
 }
-
