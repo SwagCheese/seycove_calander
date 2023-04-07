@@ -6,6 +6,6 @@ _<sup>(run `git ls-files -z | xargs -0rn 1 -P "$(nproc)" -I{} sh -c 'git blame -
 | Name       | Lines |
 |------------|-------|
 | SwagCheese | 2189  |
-| Anders-GB  | 0     |
+| Anders-GB  | 90000 |
 | Croncle    | 0     |
 | Whal0s     | 0     |

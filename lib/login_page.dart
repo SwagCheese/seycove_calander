@@ -20,7 +20,22 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      appBar: AppBar(
+        leading: Container(),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.arrow_forward_ios_rounded, size: 30,),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MainView(title: 'Seycove Calendar App,')),
+              );
+            },
+          ),
+        ],
+
+      ),
+    backgroundColor: Theme.of(context).colorScheme.background,
       body: Container(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -137,34 +152,36 @@ class _LoginPageState extends State<LoginPage> {
                     height: 20,
                   ),
 
-                  ElevatedButton(
-                    onPressed: () async {
-                      if (_formKey.currentState!.validate()) {
-                        List<Course> selectedCourses = [];
+          ElevatedButton(
+            onPressed: () async {
+              if (_formKey.currentState!.validate()) {
+                List<Course> selectedCourses = [];
+                int idkBecauseThisShittyChatGPTGenoratedCodeDoesntAskForTheRoomNumber = -1;
+                List<Block> blocksOrder = [Block.first, Block.second, Block.third, Block.fourth];
 
-                        int idkBecauseThisShittyChatGPTGenoratedCodeDoesntAskForTheRoomNumber = -1;
+                for (int i = 0; i < selectedCoursesStrings.length; ++i) {
+                  selectedCourses.add(Course(selectedCoursesStrings[i], idkBecauseThisShittyChatGPTGenoratedCodeDoesntAskForTheRoomNumber, blocksOrder[i%4]));
+                }
 
-                        List<Block> blocksOrder = [Block.first, Block.second, Block.third, Block.fourth];
+                saveConfig(selectedCourses);
 
-                        for (int i = 0; i < selectedCoursesStrings.length; ++i) {
-                          selectedCourses.add(Course(selectedCoursesStrings[i], idkBecauseThisShittyChatGPTGenoratedCodeDoesntAskForTheRoomNumber, blocksOrder[i%4]));
-                        }
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MainView(title: 'Seycove Calendar App,')),
+                );
+              }
+            },
+            style: ElevatedButton.styleFrom(
+              padding: const EdgeInsets.fromLTRB(40, 15, 40, 15),
+            ),
+            child: const Text(
+              'Continue',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          )
 
-                        saveConfig(selectedCourses);
-
-                        runApp(const SeydarApp());
-                      }
-                    },
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.fromLTRB(40, 15, 40, 15),
-                    ),
-                    child: const Text(
-                      'Continue',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  )
                 ],
               ),
             )
